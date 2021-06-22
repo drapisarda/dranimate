@@ -206,14 +206,14 @@ const sketch = ({ context }) => {
           data.mesh.position.set(
             x + data.rotation.x * Math.sin(time * rotationVelocity * data.rotation.x / 10),
             y + data.rotation.y * Math.cos(time * rotationVelocity * data.rotation.y / 10),
-            z + data.rotation.z * Math.sin(time * rotationVelocity * data.rotation.z / 10),
+            z + data.rotation.z * Math.sin(time * rotationVelocity * data.rotation.z / 10)
             )
           } else {
           const animationDuration = data.animationDuration;
           data.mesh.position.set(
             animationFn(x, animationDuration, time),
             animationFn(y, animationDuration, time),
-            animationFn(z, animationDuration, time),
+            animationFn(z, animationDuration, time)
           )
         }
 
@@ -223,7 +223,6 @@ const sketch = ({ context }) => {
           animationFn(1, expansionDuration, time),
           animationFn(1, expansionDuration, time)
         )
-        
       });
       controls.update();
 
