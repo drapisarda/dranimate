@@ -13,6 +13,8 @@ in your terminal.
 ## Visualize Blocks (visualize-blocks.js)
 This script is meant to visualize data about the commits on the [Homeday's Homeday Blocks](https://github.com/homeday-de/homeday-blocks) project.
 
+[Demo](http://www.danielerapisarda.com/visualizeblocks/)
+
 This is my fork for my Workshop outcome during the **Homeday's Product Engineering Week Q2 2021** and it's based on my outcomes from the Matt DesLauriers' workshop **[Creative Coding with Canvas & WebGL](https://frontendmasters.com/courses/canvas-webgl/)** .
 
 
