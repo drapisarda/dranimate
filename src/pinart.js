@@ -28,7 +28,7 @@ const sketch = ({ context }) => {
 
   // Setup a camera
   const camera = new THREE.PerspectiveCamera(150, 1, 0.01, 100);
-  camera.position.set(0, 0, 10);
+  camera.position.set(0, 0, 20);
   camera.lookAt(new THREE.Vector3());
 
   // Setup camera controller
@@ -40,19 +40,25 @@ const sketch = ({ context }) => {
   const axesHelper = new THREE.AxesHelper(5);
   scene.add(axesHelper);
 
+  const light = new THREE.DirectionalLight('white', 1);
+  light.position.set(0, 0, 10);
+  scene.add(light);
 
   // Setup a material
-  const material = new THREE.MeshBasicMaterial({
-    color: "red",
-    wireframe: true
-  });
+  // const material = new THREE.MeshBasicMaterial({
+  //   color: "red",
+  //   wireframe: true
+  // });
+
+  const material = new THREE.MeshPhongMaterial({ color: 'black', emissive: 'grey', shininess: 100});
 
   // Setup a mesh with geometry + material
   const points = create3dGrid(xElements, yElements, 1);
+  console.log(points)
   points.forEach((point, key)  => {
     // Setup a geometry
     // const geometry = new THREE.BoxGeometry(1, 1, 5);
-    const geometry = new THREE.CylinderGeometry(1, 1, 5, 8);
+    const geometry = new THREE.CylinderGeometry(1, 1, 5, 5);
     const {position} = points[key];
     const mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x = Math.PI/2;
