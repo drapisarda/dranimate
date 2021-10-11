@@ -4,7 +4,6 @@
   "description": "Daniele Rapisarda web animation explorations",
   "main": "index.js",
   "scripts": {
-    "p5": "http-server ./src/p5",
     "p5:build": "webpack --config webpack.config.js",
     "p5:serve": "webpack serve"
   },
@@ -13,8 +12,10 @@
   "dependencies": {
     "canvas-sketch": "^0.7.4",
     "canvas-sketch-util": "^1.10.0",
+    "file-loader": "^6.2.0",
     "http-server": "^0.12.3",
     "p5": "^1.4.0",
+    "p5.createloop": "^0.2.8",
     "three": "^0.129.0"
   },
   "devDependencies": {
