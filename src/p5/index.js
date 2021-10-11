@@ -2,18 +2,18 @@ import './style.scss';
 import p5 from 'p5';
 import createLoop from 'p5.createloop';
 
-const xPoints = 50;
-const yPoints = 50;
+const xPoints = 70;
+const yPoints = 70;
 let stepX;
 let stepY;
 let minDistX;
 let minDistY;
-let pointSize = 15;
+let pointSize = 5;
 const noiseRate = 0.002;
 
 const sketch = (s) => {
   s.setup = () => {
-    s.createCanvas(s.windowWidth, s.windowHeight);
+    s.createCanvas(s.windowWidth/2, s.windowHeight/2);
     stepX = s.floor(s.width / xPoints);
     stepY = s.floor(s.height / yPoints);
     // minDistX = stepX/2;
@@ -30,7 +30,7 @@ const sketch = (s) => {
     
     for (let i = 0; i < xPoints; i++) {
       for (let j = 0; j < yPoints; j++) {
-        const mark = Math.ceil(s.noise(frameCount * i * noiseRate, frameCount * j * noiseRate) * yPoints);
+        const mark = Math.ceil(s.noise(Math.sin(frameCount * i * noiseRate), Math.sin(frameCount * j * noiseRate)) * yPoints);
         // const fillColor = Math.abs(( xPos * s.noise(xPos) + yPos * s.noise(yPos) + s.frameCount * animationRate) % 256);
         const fillColor = Math.abs(i - mark) / xPoints * 256;
         s.fill(fillColor);
