@@ -2,8 +2,6 @@ import './style.scss';
 
 const xPoints = 70;
 const yPoints = 70;
-let minDistX;
-let minDistY;
 let pointSize = 5;
 const noiseScale = 0.1;
 let a = 0;
@@ -32,16 +30,6 @@ const squaresMatched = (xPos, yPos, s) => {
 }
 
 const invert = (xPos, yPos, s) => squaresMatched(xPos, yPos, s) % 2;
-
-const invert2 = (xPos, yPos, s, i = 0) => {
-  const squareSize = squareSizes[i];
-  if (!squareSize) return true;
-
-  const squarePosition = canvasSize / 2 - squareSize / 2;
-  const collides = s.collideRectCircle(squarePosition, squarePosition, squareSize, squareSize, xPos, yPos, pointSize)
-
-  return collides || !invert2(xPos, yPos, s, next);
-}
 
 const sketch = (s) => {
   s.setup = () => {
