@@ -1,61 +1,76 @@
 import './style.scss';
-import p5 from 'p5';
 
 const xPoints = 70;
 const yPoints = 70;
-let stepX;
-let stepY;
 let minDistX;
 let minDistY;
 let pointSize = 5;
 const noiseScale = 0.1;
 let a = 0;
+const canvasSize = 700;
+const stepX = Math.floor(canvasSize / xPoints);
+const stepY = Math.floor(canvasSize / yPoints);
+const squareSizes = [
+  600,
+  500,
+  400,
+  300,
+  200,
+  100,
+  10
+];
+
+const squaresMatched = (xPos, yPos, s) => {
+  return squareSizes.reduce((acc, squareSize, i) => {
+    const squarePosition = canvasSize / 2 - squareSize / 2;
+
+    const collides = s.collidePointRect(xPos, yPos, squarePosition, squarePosition, squareSize, squareSize);
+    if (collides) return acc = acc + 1;
+
+    return acc;
+  }, 0)
+}
+
+const invert = (xPos, yPos, s) => squaresMatched(xPos, yPos, s) % 2;
+
+const invert2 = (xPos, yPos, s, i = 0) => {
+  const squareSize = squareSizes[i];
+  if (!squareSize) return true;
+
+  const squarePosition = canvasSize / 2 - squareSize / 2;
+  const collides = s.collideRectCircle(squarePosition, squarePosition, squareSize, squareSize, xPos, yPos, pointSize)
+
+  return collides || !invert2(xPos, yPos, s, next);
+}
 
 const sketch = (s) => {
   s.setup = () => {
-    // s.createCanvas(Math.max(500, s.windowWith), Math.max(500, s.windowHeight));
-    s.createCanvas(500, 500);
-    stepX = s.floor(s.width / xPoints);
-    stepY = s.floor(s.height / yPoints);
-    // minDistX = stepX/2;
-    // minDistY = stepY/2;
+    const container = s.select('.canvas');
+    const canvas = s.createCanvas(canvasSize, canvasSize);
+    canvas.parent(container);
+
     s.frameRate(10)
-    // pointsDistance = (stepX**2 + stepY**2)**0.5;
+    s.background(0);
   }
 
   s.draw = () => {
-    s.background(0);
-    const { mouseX, mouseY, frameCount, ceil, lerp} = s;
-    // const mark = ceil(s.noise(frameCount * noiseRate * s.random()) * xPoints);
+    s.fill(255);
     for (let i = 0; i < xPoints; i++) {
       a += s.radians(noiseScale);
-      const noise = s.noise(s.cos(a), s.sin(a));
-      const mark = lerp(0, xPoints, noise);
-      if (frameCount < 10) console.log(noise)
-      
-      for (let j = 0; j < yPoints; j++) {
-        // const mark = s.noise(Math.sin(frameCount * i * noiseRate), Math.sin(frameCount * j * noiseRate)) * yPoints;
-        // const fillColor = Math.abs(( xPos * s.noise(xPos) + yPos * s.noise(yPos) + s.frameCount * animationRate) % 256);
-        const fillColor = Math.abs(j - mark) / xPoints * 255 *2;
-        s.fill(fillColor);
 
+      for (let j = 0; j < yPoints; j++) {
+        const noise = s.noise(s.cos(a), s.sin(a));
+        const mark = s.lerp(0, xPoints, noise);
         let xPos = i * stepX + pointSize / 2;
         let yPos = j * stepY + pointSize / 2;
+        let fillColor = Math.abs(j - mark) / xPoints * 255 * 2;
+        if (invert(xPos, yPos, s)) fillColor = Math.abs(fillColor-255);
+        s.fill(fillColor);
         
-        // const xDist = Math.abs(xPos - mouseX);
-        // const yDist = Math.abs(yPos - mouseY);
-        // if (xDist <= minDistX && yDist <= minDistY) {
-        //   if (mouseX > xPos) xPos = mouseX - minDistX;
-        //   if (mouseX < xPos) xPos = minDistX + mouseX;
-        //   if (mouseY > yPos) yPos = mouseY - minDistY;
-        //   if (mouseY < yPos) yPos = minDistY + mouseY;
-        // }
-
         s.circle(xPos, yPos, pointSize);
       }
     }
   }
-
 }
 
 const sketchInstance = new p5(sketch);
