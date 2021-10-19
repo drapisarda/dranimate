@@ -15,9 +15,7 @@
     "file-loader": "^6.2.0",
     "http-server": "^0.12.3",
     "p5": "^1.4.0",
-    "p5.createloop": "^0.2.8",
-    "three": "^0.129.0",
-    "toxiclibsjs": "^0.3.3"
+    "three": "^0.129.0"
   },
   "devDependencies": {
     "css-loader": "^6.2.0",
