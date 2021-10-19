@@ -28,7 +28,7 @@ const drawer = (s, invert = false) => {
 
 const sketch = (s) => {
   s.setup = () => {
-    s.createCanvas(canvasSize, canvasSize, 'WEBGL');
+    s.createCanvas(canvasSize, canvasSize);
 
     s.frameRate(10)
     s.background(0);
@@ -41,7 +41,7 @@ const sketch = (s) => {
 
 const sketchNegative = (s) => {
   s.setup = () => {
-    s.createCanvas(canvasSize, canvasSize, 'WEBGL');
+    s.createCanvas(canvasSize, canvasSize);
 
     s.frameRate(10)
     s.background(0);
