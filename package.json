@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "p5:build": "webpack --config webpack.config.js",
-    "p5:serve": "webpack serve ./src/p5"
+    "p5:serve": "webpack serve"
   },
   "author": "Daniele Rapisarda",
   "license": "ISC",
@@ -16,7 +16,8 @@
     "http-server": "^0.12.3",
     "p5": "^1.4.0",
     "p5.createloop": "^0.2.8",
-    "three": "^0.129.0"
+    "three": "^0.129.0",
+    "toxiclibsjs": "^0.3.3"
   },
   "devDependencies": {
     "css-loader": "^6.2.0",

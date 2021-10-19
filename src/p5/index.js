@@ -1,5 +1,3 @@
-import './style.scss';
-
 const xPoints = 70;
 const yPoints = 70;
 let pointSize = 5;
