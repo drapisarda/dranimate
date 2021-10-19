@@ -1,6 +1,3 @@
-
-console.log('ciao');
-
 const xPoints = 70;
 const yPoints = 70;
 let pointSize = 5;
@@ -31,7 +28,7 @@ const drawer = (s, invert = false) => {
 
 const sketch = (s) => {
   s.setup = () => {
-    s.createCanvas(canvasSize, canvasSize);
+    s.createCanvas(canvasSize, canvasSize, 'WEBGL');
 
     s.frameRate(10)
     s.background(0);
@@ -44,7 +41,7 @@ const sketch = (s) => {
 
 const sketchNegative = (s) => {
   s.setup = () => {
-    s.createCanvas(canvasSize, canvasSize);
+    s.createCanvas(canvasSize, canvasSize, 'WEBGL');
 
     s.frameRate(10)
     s.background(0);
