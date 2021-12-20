@@ -8,6 +8,7 @@ const stepX = Math.floor(canvasSize / xPoints);
 const stepY = Math.floor(canvasSize / yPoints);
 
 const drawer = (s, invert = false) => {
+  s.clear();
   s.fill(255);
   for (let i = 0; i < xPoints; i++) {
     a += s.radians(noiseScale);
